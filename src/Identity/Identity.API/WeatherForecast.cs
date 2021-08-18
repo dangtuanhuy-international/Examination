@@ -1,6 +1,6 @@
 using System;
 
-namespace Examination.API
+namespace Identity.API
 {
     public class WeatherForecast
     {
