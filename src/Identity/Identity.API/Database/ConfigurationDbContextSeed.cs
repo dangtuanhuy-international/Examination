@@ -7,7 +7,7 @@ using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Identity.API.Database.Configuration
+namespace Identity.API.Database
 {
     public class ConfigurationDbContextSeed
     {
