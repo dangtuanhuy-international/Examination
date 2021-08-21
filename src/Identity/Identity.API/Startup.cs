@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Identity.API.Database;
 using Identity.API.Models;
 using Identity.API.Services;
+using Identity.API.Settings;
 using IdentityServer4.AspNetIdentity;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
@@ -54,7 +55,7 @@ namespace Identity.API
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.Configure<AppSettings>(Configuration);
             services.AddIdentityServer(x =>
             {
                 x.IssuerUri = "https://be-blog-mkl-api.azurewebsites.net";
