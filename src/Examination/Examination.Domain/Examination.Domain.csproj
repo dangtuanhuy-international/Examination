@@ -4,4 +4,16 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="AggregateModels\ExamAggragate\" />
+    <Folder Include="AggregateModels\ExamResultAggregate\" />
+    <Folder Include="AggregateModels\UseAggragate\" />
+    <Folder Include="AggregateModels\QuestionAggragate\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.13.1" />
+  </ItemGroup>
+
 </Project>
