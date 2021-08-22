@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace Examination.API.IntegrationTests
@@ -8,7 +7,6 @@ namespace Examination.API.IntegrationTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

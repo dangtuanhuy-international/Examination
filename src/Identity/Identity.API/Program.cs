@@ -1,5 +1,4 @@
 using Identity.API.Database;
-using Identity.API.Database.Configuration;
 using Identity.API.Extensions;
 using Identity.API.Settings;
 using IdentityServer4.EntityFramework.DbContexts;

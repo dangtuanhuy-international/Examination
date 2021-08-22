@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Examination.Application
+﻿namespace Examination.Application
 {
     public class Class1
     {

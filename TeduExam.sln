@@ -1,37 +1,41 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{77319A98-AFD5-4881-B872-A71051F53AD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "src\Identity\Identity.API\Identity.API.csproj", "{12B96B31-3FA6-4F2D-BF9D-142B4B3CEBB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "src\Identity\Identity.API\Identity.API.csproj", "{12B96B31-3FA6-4F2D-BF9D-142B4B3CEBB9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examination", "Examination", "{5A939915-9437-4E19-AB69-C69C846D661E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.API", "src\Examination\Examination.API\Examination.API.csproj", "{55117740-2922-4B5C-901A-BC73FA6EF759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.API", "src\Examination\Examination.API\Examination.API.csproj", "{55117740-2922-4B5C-901A-BC73FA6EF759}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Application", "src\Examination\Examination.Application\Examination.Application.csproj", "{287F66D3-BE20-44DE-B081-213ADB477951}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Application", "src\Examination\Examination.Application\Examination.Application.csproj", "{287F66D3-BE20-44DE-B081-213ADB477951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Domain", "src\Examination\Examination.Domain\Examination.Domain.csproj", "{93DF96DB-20FC-4733-AB8C-932EA03CC3E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Domain", "src\Examination\Examination.Domain\Examination.Domain.csproj", "{93DF96DB-20FC-4733-AB8C-932EA03CC3E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Infrastructure", "src\Examination\Examination.Infrastructure\Examination.Infrastructure.csproj", "{586BDDC5-F669-467B-B908-91D3DEAC74F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Infrastructure", "src\Examination\Examination.Infrastructure\Examination.Infrastructure.csproj", "{586BDDC5-F669-467B-B908-91D3DEAC74F1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1C551DD6-46A1-4640-9A26-F26B019399CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity.API", "Identity.API", "{1750E176-8084-4E1A-9425-AC9DF5ACEAC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API.IntegrationTests", "tests\Identity\Identity.API.IntegrationTests\Identity.API.IntegrationTests.csproj", "{43024DAF-4AD5-4666-8D5E-CDA75BD0FC9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API.IntegrationTests", "tests\Identity\Identity.API.IntegrationTests\Identity.API.IntegrationTests.csproj", "{43024DAF-4AD5-4666-8D5E-CDA75BD0FC9D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examination", "Examination", "{A687E90A-DC27-4EC3-A9A9-FB864E2DE4B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Infrastructure.IntegrationTests", "tests\Examination\Examination.Infrastructure.IntegrationTests\Examination.Infrastructure.IntegrationTests.csproj", "{7F864D47-3BF7-4747-9BD2-EBADE25439B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Infrastructure.IntegrationTests", "tests\Examination\Examination.Infrastructure.IntegrationTests\Examination.Infrastructure.IntegrationTests.csproj", "{7F864D47-3BF7-4747-9BD2-EBADE25439B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Domain.UnitTests", "tests\Examination\Examination.Domain.UnitTests\Examination.Domain.UnitTests.csproj", "{2DEE8BCB-690E-4A9E-8C38-F34DD51520D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Domain.UnitTests", "tests\Examination\Examination.Domain.UnitTests\Examination.Domain.UnitTests.csproj", "{2DEE8BCB-690E-4A9E-8C38-F34DD51520D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Application.UnitTests", "tests\Examination\Examination.Application.UnitTests\Examination.Application.UnitTests.csproj", "{DBB654EC-8B11-454E-AEEF-EEDC200D9CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.Application.UnitTests", "tests\Examination\Examination.Application.UnitTests\Examination.Application.UnitTests.csproj", "{DBB654EC-8B11-454E-AEEF-EEDC200D9CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.API.IntegrationTests", "tests\Examination\Examination.API.IntegrationTests\Examination.API.IntegrationTests.csproj", "{15C246CA-F8F4-4BA7-A708-7EE5F71C7A4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examination.API.IntegrationTests", "tests\Examination\Examination.API.IntegrationTests\Examination.API.IntegrationTests.csproj", "{15C246CA-F8F4-4BA7-A708-7EE5F71C7A4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{F219BF40-1317-4CB6-804A-E45E5E43D71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examination.Dtos", "Examination.Dtos\Examination.Dtos.csproj", "{1553DD6C-7670-4E50-8752-EEDBCB250B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,9 +45,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{12B96B31-3FA6-4F2D-BF9D-142B4B3CEBB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -166,6 +167,21 @@ Global
 		{15C246CA-F8F4-4BA7-A708-7EE5F71C7A4A}.Release|x64.Build.0 = Release|Any CPU
 		{15C246CA-F8F4-4BA7-A708-7EE5F71C7A4A}.Release|x86.ActiveCfg = Release|Any CPU
 		{15C246CA-F8F4-4BA7-A708-7EE5F71C7A4A}.Release|x86.Build.0 = Release|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Debug|x64.Build.0 = Debug|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Debug|x86.Build.0 = Debug|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Release|x64.ActiveCfg = Release|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Release|x64.Build.0 = Release|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Release|x86.ActiveCfg = Release|Any CPU
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{12B96B31-3FA6-4F2D-BF9D-142B4B3CEBB9} = {77319A98-AFD5-4881-B872-A71051F53AD0}
@@ -181,5 +197,10 @@ Global
 		{2DEE8BCB-690E-4A9E-8C38-F34DD51520D7} = {A687E90A-DC27-4EC3-A9A9-FB864E2DE4B2}
 		{DBB654EC-8B11-454E-AEEF-EEDC200D9CC9} = {A687E90A-DC27-4EC3-A9A9-FB864E2DE4B2}
 		{15C246CA-F8F4-4BA7-A708-7EE5F71C7A4A} = {A687E90A-DC27-4EC3-A9A9-FB864E2DE4B2}
+		{F219BF40-1317-4CB6-804A-E45E5E43D71C} = {77319A98-AFD5-4881-B872-A71051F53AD0}
+		{1553DD6C-7670-4E50-8752-EEDBCB250B35} = {F219BF40-1317-4CB6-804A-E45E5E43D71C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB90B1DA-1FE7-4A9E-8114-90D6D7028AB7}
 	EndGlobalSection
 EndGlobal

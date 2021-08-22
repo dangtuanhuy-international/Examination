@@ -3,9 +3,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Examination.Domain.SeedWork
 {
@@ -72,8 +69,8 @@ namespace Examination.Domain.SeedWork
             }
             else
                 return base.GetHashCode();
-
         }
+
         public static bool operator ==(Entity left, Entity right)
         {
             if (Object.Equals(left, null))

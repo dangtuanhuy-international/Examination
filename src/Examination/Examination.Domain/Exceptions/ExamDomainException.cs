@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Examination.Domain.Exceptions
 {
-    public class ExamDomainException: Exception
+    public class ExamDomainException : Exception
     {
         public ExamDomainException()
         { }

@@ -1,44 +1,40 @@
-﻿
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServer4.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Identity.API.Config
 {
     public static class Config
-    {       
-            public static IEnumerable<IdentityResource> GetIdentityResources()
+    {
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new IdentityResource[]
             {
-                return new IdentityResource[]
-                {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile()
-                };
-            }
+            };
+        }
 
-            public static IEnumerable<ApiResource> GetApis()
-            {
-                return new[]{
+        public static IEnumerable<ApiResource> GetApis()
+        {
+            return new[]{
                 new ApiResource{
                     Name = "exam_api",
                     DisplayName= "Exam API"
                 }
             };
-            }
+        }
 
-            public static IEnumerable<ApiScope> GetApiScopes()
-            {
-                return new List<ApiScope>{
+        public static IEnumerable<ApiScope> GetApiScopes()
+        {
+            return new List<ApiScope>{
                 new ApiScope("full_access")
                 };
-            }
+        }
 
-            public static IEnumerable<Client> GetClients(Dictionary<string, string> clientUrls)
-            {
-                return new List<Client>()
+        public static IEnumerable<Client> GetClients(Dictionary<string, string> clientUrls)
+        {
+            return new List<Client>()
             {
                 new Client
                 {
@@ -73,7 +69,6 @@ namespace Identity.API.Config
                     AccessTokenLifetime = 60 * 60 * 2, // 2 hours
                     IdentityTokenLifetime = 60 * 60 * 2, // 2 hours
                     RequireClientSecret = true, // !Important for authorization
-
                 },
 
                 new Client
@@ -109,7 +104,6 @@ namespace Identity.API.Config
                     AccessTokenLifetime = 60 * 60 * 2, // 2 hours
                     IdentityTokenLifetime = 60 * 60 * 2, // 2 hours
                     RequireClientSecret = true, // !Important for authorization
-
                 },
                 new Client
                 {
@@ -127,7 +121,6 @@ namespace Identity.API.Config
                         },
                 }
         };
-            }
         }
     }
-
+}

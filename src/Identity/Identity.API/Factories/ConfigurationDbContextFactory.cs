@@ -3,12 +3,8 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Identity.API.Factories
 {
@@ -27,7 +23,6 @@ namespace Identity.API.Factories
             var storeOptions = new ConfigurationStoreOptions();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: o => o.MigrationsAssembly(typeof(Startup).Assembly.FullName));
-
 
             return new ConfigurationDbContext(optionsBuilder.Options, storeOptions);
         }

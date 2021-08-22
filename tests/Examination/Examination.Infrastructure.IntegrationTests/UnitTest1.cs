@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace Examination.Infrastructure.IntegrationTests
@@ -8,7 +7,6 @@ namespace Examination.Infrastructure.IntegrationTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

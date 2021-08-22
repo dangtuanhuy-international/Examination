@@ -1,14 +1,14 @@
+using Identity.API.Models;
+using IdentityModel;
+using IdentityServer4.Models;
+using IdentityServer4.Services;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Identity.API.Models;
-using IdentityModel;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
-using Microsoft.AspNetCore.Identity;
 
 namespace Identity.API.Services
 {
@@ -76,7 +76,6 @@ namespace Identity.API.Services
 
             if (!string.IsNullOrWhiteSpace(user.FirstName))
                 claims.Add(new Claim(ClaimTypes.GivenName, user.FirstName));
-
 
             if (!string.IsNullOrWhiteSpace(user.LastName))
                 claims.Add(new Claim(ClaimTypes.Surname, user.LastName));

@@ -24,7 +24,6 @@ namespace Identity.API.Database
 
                 try
                 {
-
                     if (!context.Users.Any())
                     {
                         context.Users.AddRange(GetDefaultUser());
@@ -45,6 +44,7 @@ namespace Identity.API.Database
                 }
             }
         }
+
         private IEnumerable<ApplicationUser> GetDefaultUser()
         {
             var user =

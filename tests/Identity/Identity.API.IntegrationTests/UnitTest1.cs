@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace Identity.API.IntegrationTests
@@ -8,7 +7,6 @@ namespace Identity.API.IntegrationTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }
