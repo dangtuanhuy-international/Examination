@@ -1,10 +1,9 @@
-﻿using Examination.Domain.AggregateModels.ExamAggragate;
-using Examination.Infrastructure.Seedwork;
+using Examination.Domain.AggregateModels.ExamAggregate;
+using Examination.Infrastructure.SeedWork;
 using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Examination.Infrastructure.Repositories
@@ -15,8 +14,8 @@ namespace Examination.Infrastructure.Repositories
             IMongoClient mongoClient,
             IClientSessionHandle clientSessionHandle,
             IOptions<ExamSettings> settings,
-            IMediator mediator, string collection
-            ) : base(mongoClient, clientSessionHandle, settings, mediator, collection)
+            IMediator mediator)
+        : base(mongoClient, clientSessionHandle, settings, mediator, Constants.Collections.Exam)
         {
         }
 
@@ -26,7 +25,7 @@ namespace Examination.Infrastructure.Repositories
             return await Collection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task<IList<Exam>> GetExamListAsync()
+        public async Task<IEnumerable<Exam>> GetExamListAsync()
         {
             return await Collection.AsQueryable().ToListAsync();
         }

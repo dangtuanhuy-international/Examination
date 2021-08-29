@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Examination.Domain.SeedWork
 {
-    public class Enumeration : IComparable
+    public abstract class Enumeration : IComparable
     {
         public string Name { get; private set; }
 

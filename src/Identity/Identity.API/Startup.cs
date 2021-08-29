@@ -1,7 +1,6 @@
 using Identity.API.Database;
 using Identity.API.Models;
 using Identity.API.Services;
-using Identity.API.Settings;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,10 +47,12 @@ namespace Identity.API
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
             services.Configure<AppSettings>(Configuration);
+
             services.AddIdentityServer(x =>
             {
-                x.IssuerUri = "https://be-blog-mkl-api.azurewebsites.net";
+                x.IssuerUri = "https://tedu.com.vn";
                 x.Authentication.CookieLifetime = TimeSpan.FromHours(2);
             })
             .AddDeveloperSigningCredential()

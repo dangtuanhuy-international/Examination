@@ -1,4 +1,4 @@
-﻿using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -23,6 +23,7 @@ namespace Identity.API.Factories
             var operationOptions = new OperationalStoreOptions();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: o => o.MigrationsAssembly(typeof(Startup).Assembly.FullName));
+
             return new PersistedGrantDbContext(optionsBuilder.Options, operationOptions);
         }
     }

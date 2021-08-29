@@ -1,3 +1,4 @@
+using Identity.API.Configuration;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
@@ -23,7 +24,7 @@ namespace Identity.API.Database
 
             if (!context.Clients.Any())
             {
-                foreach (var client in Identity.API.Config.Config.GetClients(clientUrls))
+                foreach (var client in Config.GetClients(clientUrls))
                 {
                     context.Clients.Add(client.ToEntity());
                 }
@@ -49,7 +50,7 @@ namespace Identity.API.Database
 
             if (!context.IdentityResources.Any())
             {
-                foreach (var resource in Identity.API.Config.Config.GetIdentityResources())
+                foreach (var resource in Config.GetIdentityResources())
                 {
                     context.IdentityResources.Add(resource.ToEntity());
                 }
@@ -58,7 +59,7 @@ namespace Identity.API.Database
 
             if (!context.ApiResources.Any())
             {
-                foreach (var api in Identity.API.Config.Config.GetApis())
+                foreach (var api in Config.GetApis())
                 {
                     context.ApiResources.Add(api.ToEntity());
                 }
@@ -68,7 +69,7 @@ namespace Identity.API.Database
 
             if (!context.ApiScopes.Any())
             {
-                foreach (var resource in Identity.API.Config.Config.GetApiScopes())
+                foreach (var resource in Config.GetApiScopes())
                 {
                     context.ApiScopes.Add(resource.ToEntity());
                 }

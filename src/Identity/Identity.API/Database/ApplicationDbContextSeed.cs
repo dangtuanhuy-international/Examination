@@ -1,5 +1,4 @@
-﻿using Identity.API.Models;
-using Identity.API.Settings;
+using Identity.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;

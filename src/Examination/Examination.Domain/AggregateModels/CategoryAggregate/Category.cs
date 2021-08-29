@@ -1,7 +1,7 @@
-﻿using Examination.Domain.SeedWork;
+using Examination.Domain.SeedWork;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Examination.Domain.AggregateModels
+namespace Examination.Domain.AggregateModels.CategoryAggregate
 {
     public class Category : Entity
     {

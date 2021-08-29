@@ -1,4 +1,4 @@
-﻿using Examination.Domain.SeedWork;
+using Examination.Domain.SeedWork;
 using MediatR;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Examination.Infrastructure.Seedwork
+namespace Examination.Infrastructure.SeedWork
 {
     public class BaseRepository<T> : IRepositoryBase<T> where T : Entity, IAggregateRoot
     {
@@ -18,17 +18,23 @@ namespace Examination.Infrastructure.Seedwork
         private readonly ExamSettings _settings;
         private readonly IMediator _mediator;
 
-        public BaseRepository(IMongoClient mongoClient, IClientSessionHandle clientSessionHandle, IOptions<ExamSettings> settings, IMediator mediator, string collection)
+        public BaseRepository(IMongoClient mongoClient,
+         IClientSessionHandle clientSessionHandle,
+         IOptions<ExamSettings> settings,
+         IMediator mediator,
+         string collection)
         {
             _settings = settings.Value;
-            _mediator = mediator;
             (_mongoClient, _clientSessionHandle, _collection) = (mongoClient, clientSessionHandle, collection);
+
             if (!_mongoClient.GetDatabase(_settings.DatabaseSettings.DatabaseName).ListCollectionNames().ToList().Contains(collection))
                 _mongoClient.GetDatabase(_settings.DatabaseSettings.DatabaseName).CreateCollection(collection);
+
+            _mediator = mediator;
         }
 
         protected virtual IMongoCollection<T> Collection =>
-               _mongoClient.GetDatabase(_settings.DatabaseSettings.DatabaseName).GetCollection<T>(_collection);
+                   _mongoClient.GetDatabase(_settings.DatabaseSettings.DatabaseName).GetCollection<T>(_collection);
 
         public async Task AbortTransactionAsync(CancellationToken cancellationToken = default)
         {
@@ -67,6 +73,7 @@ namespace Examination.Infrastructure.Seedwork
             Expression<Func<T, string>> func = f => f.Id;
             var value = (string)obj.GetType().GetProperty(func.Body.ToString().Split(".")[1])?.GetValue(obj, null);
             var filter = Builders<T>.Filter.Eq(func, value);
+
             await Collection.ReplaceOneAsync(_clientSessionHandle, filter, obj);
         }
     }

@@ -1,6 +1,4 @@
-﻿namespace Examination.Domain.SeedWork
+namespace Examination.Domain.SeedWork
 {
-    public interface IAggregateRoot
-    {
-    }
+    public interface IAggregateRoot { }
 }

@@ -1,4 +1,4 @@
-﻿using Identity.API.Database;
+using Identity.API.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;

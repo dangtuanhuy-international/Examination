@@ -1,4 +1,4 @@
-﻿using Examination.Domain.Events;
+using Examination.Domain.Events;
 using Examination.Domain.SeedWork;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
@@ -9,7 +9,7 @@ namespace Examination.Domain.AggregateModels.ExamResultAggregate
     public class ExamResult : Entity, IAggregateRoot
     {
         public ExamResult(string userId, string examId) =>
-          (UserId, ExamId, ExamStartDate, Finished) = (userId, examId, DateTime.Now, false);
+            (UserId, ExamId, ExamStartDate, Finished) = (userId, examId, DateTime.Now, false);
 
         [BsonElement("examId")]
         public string ExamId { get; set; }
@@ -18,7 +18,7 @@ namespace Examination.Domain.AggregateModels.ExamResultAggregate
         public string UserId { set; get; }
 
         [BsonElement("examQuestionReviews")]
-        public IList<ExamResultDetail> ExamResultDetails { get; set; }
+        public IEnumerable<ExamResultDetail> ExamResultDetails { get; set; }
 
         [BsonElement("examDate")]
         public DateTime ExamStartDate { get; set; }
@@ -43,7 +43,7 @@ namespace Examination.Domain.AggregateModels.ExamResultAggregate
             this.AddDomainEvent(new ExamStartedDomainEvent(UserId, firstName, lastName));
         }
 
-        public void SetUserChoices(IList<ExamResultDetail> examResultDetails)
+        public void SetUserChoices(List<ExamResultDetail> examResultDetails)
         {
             ExamResultDetails = examResultDetails;
         }

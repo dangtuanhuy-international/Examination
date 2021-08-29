@@ -1,4 +1,4 @@
-﻿namespace Examination.Infrastructure.Seedwork
+namespace Examination.Infrastructure.SeedWork
 {
     public class Constants
     {

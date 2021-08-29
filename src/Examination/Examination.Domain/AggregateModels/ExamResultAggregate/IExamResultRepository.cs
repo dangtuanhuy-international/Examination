@@ -1,4 +1,4 @@
-﻿using Examination.Domain.SeedWork;
+using Examination.Domain.SeedWork;
 using System.Threading.Tasks;
 
 namespace Examination.Domain.AggregateModels.ExamResultAggregate

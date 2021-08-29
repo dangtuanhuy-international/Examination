@@ -1,6 +1,5 @@
 using Identity.API.Database;
 using Identity.API.Extensions;
-using Identity.API.Settings;
 using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +18,6 @@ namespace Identity.API
     {
         public static int Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
             string appName = typeof(Startup).Namespace;
 
             var configuration = GetConfiguration();
@@ -100,12 +98,5 @@ namespace Identity.API
                 return builder.Build();
             }
         }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
     }
 }
