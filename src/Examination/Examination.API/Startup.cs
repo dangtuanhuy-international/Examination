@@ -31,7 +31,7 @@ namespace Examination.API
             services.AddSingleton<IMongoClient>(c =>
             {               
                 return new MongoClient(
-                    "mongodb://huydangmongo:aHqUUJ2KenoXRgRbYLPqhNSWyWMijRfhOOq1l2BnqYhYxetzBCF74hYTeROZ6sLbmOPKb5axnOLBSMekPl54OA==@huydangmongo.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@huydangmongo@");
+                    "");
             });
             services.AddScoped(c => c.GetService<IMongoClient>()?.StartSession());
             services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
