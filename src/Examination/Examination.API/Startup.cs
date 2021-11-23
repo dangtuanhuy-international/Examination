@@ -29,7 +29,7 @@ namespace Examination.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IMongoClient>(c =>
-            {               
+            {
                 return new MongoClient(
                     "");
             });
