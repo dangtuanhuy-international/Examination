@@ -1,4 +1,4 @@
-name: .NET
+name: CI/CD Education App
 
 on:
   push:
