@@ -31,7 +31,7 @@ namespace Examination.API
             services.AddSingleton<IMongoClient>(c =>
             {
                 return new MongoClient(
-                    "");
+                    "mongodb://linh2nguyen:mr6iLL5KNp5piiK1M8gSFoiEqlVrYyMl0gcwv2LdbN2tlAITKnzTIij8TbkwnsxWkHUMFEv878y6ypY9RqVHzw==@linh2nguyen.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@linh2nguyen@");
             });
             services.AddScoped(c => c.GetService<IMongoClient>()?.StartSession());
             services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
