@@ -4,7 +4,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Examination.Application.DomainEventHandlers
+namespace Examination.Application.DomainEventHandlers.V1
 {
     public class SynchronizeUserWhenExamStartedDomainEventHandler : INotificationHandler<ExamStartedDomainEvent>
     {

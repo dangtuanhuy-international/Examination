@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Examination.Application.Commands.StartExam
+namespace Examination.Application.Commands.V2.StartExam
 {
     public class StartExamCommandHandler : IRequestHandler<StartExamCommand, bool>
     {

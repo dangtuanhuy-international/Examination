@@ -1,4 +1,4 @@
-using Examination.Application.Commands.StartExam;
+using Examination.Application.Commands.V1.StartExam;
 using Examination.Application.Mapping;
 using Examination.Domain.AggregateModels.ExamAggregate;
 using Examination.Domain.AggregateModels.ExamResultAggregate;
@@ -28,6 +28,15 @@ namespace Examination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApiVersioning(options =>
+            {
+                options.ReportApiVersions = true;
+            });
+            services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
             services.AddSingleton<IMongoClient>(c =>
             {
                 return new MongoClient(
@@ -49,7 +58,8 @@ namespace Examination.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Examination.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Examination.API V1", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "Examination.API V2", Version = "v2" });
             });
             services.Configure<ExamSettings>(Configuration);
 
@@ -65,7 +75,12 @@ namespace Examination.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Examination.API v1"));
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Examination.API v1");
+
+                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "Examination.API v2");
+                } );
+
             }
 
             app.UseHttpsRedirection();
