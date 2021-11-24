@@ -5,14 +5,22 @@ using Examination.Domain.AggregateModels.ExamResultAggregate;
 using Examination.Domain.AggregateModels.UserAggregate;
 using Examination.Infrastructure.Repositories;
 using Examination.Infrastructure.SeedWork;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using System;
+using System.Linq;
+using System.Net.Mime;
+using System.Text.Json;
 
 namespace Examination.API
 {
@@ -28,20 +36,32 @@ namespace Examination.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var user = Configuration.GetValue<string>("DatabaseSettings:User");
+            var password = Configuration.GetValue<string>("DatabaseSettings:Password");
+            var server = Configuration.GetValue<string>("DatabaseSettings:Server");
+            var databaseName = Configuration.GetValue<string>("DatabaseSettings:DatabaseName");
+            var mongodbConnectionString = "mongodb://" + user + ":" + password + "@" + server + "/" + databaseName + "?authSource=admin";
             services.AddApiVersioning(options =>
             {
                 options.ReportApiVersions = true;
             });
-            services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
-            });
+            services.AddVersionedApiExplorer(
+                           options =>
+                           {
+                               // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+                               // note: the specified format code will format the version as "'v'major[.minor][-status]"
+                               options.GroupNameFormat = "'v'VVV";
+
+                               // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+                               // can also be used to control the format of the API version in route templates
+                               options.SubstituteApiVersionInUrl = true;
+                           });
+
             services.AddSingleton<IMongoClient>(c =>
             {
-                return new MongoClient(
-                    "mongodb://linh2nguyen:mr6iLL5KNp5piiK1M8gSFoiEqlVrYyMl0gcwv2LdbN2tlAITKnzTIij8TbkwnsxWkHUMFEv878y6ypY9RqVHzw==@linh2nguyen.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@linh2nguyen@");
+                return new MongoClient("mongodb://linh2nguyen:mr6iLL5KNp5piiK1M8gSFoiEqlVrYyMl0gcwv2LdbN2tlAITKnzTIij8TbkwnsxWkHUMFEv878y6ypY9RqVHzw==@linh2nguyen.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@linh2nguyen@");
             });
+
             services.AddScoped(c => c.GetService<IMongoClient>()?.StartSession());
             services.AddAutoMapper(cfg => { cfg.AddProfile(new MappingProfile()); });
             services.AddMediatR(typeof(StartExamCommandHandler).Assembly);
@@ -63,9 +83,27 @@ namespace Examination.API
             });
             services.Configure<ExamSettings>(Configuration);
 
+            //Health check
+            services.AddHealthChecks()
+                    .AddCheck("self", () => HealthCheckResult.Healthy())
+                    .AddMongoDb(mongodbConnectionString: "mongodb://linh2nguyen:mr6iLL5KNp5piiK1M8gSFoiEqlVrYyMl0gcwv2LdbN2tlAITKnzTIij8TbkwnsxWkHUMFEv878y6ypY9RqVHzw==@linh2nguyen.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@linh2nguyen@",
+                                name: "mongo",
+                                failureStatus: HealthStatus.Unhealthy);
+
+            services.AddHealthChecksUI(opt =>
+            {
+                opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
+                opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
+                opt.SetApiMaxActiveRequests(1); //api requests concurrency
+
+                opt.AddHealthCheckEndpoint("Exam API", "/hc"); //map health check api
+            })
+                    .AddInMemoryStorage();
+
             services.AddTransient<IExamRepository, ExamRepository>();
             services.AddTransient<IExamResultRepository, ExamResultRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,12 +113,11 @@ namespace Examination.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => {
+                app.UseSwaggerUI(c =>
+                {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Examination.API v1");
-
                     c.SwaggerEndpoint("/swagger/v2/swagger.json", "Examination.API v2");
-                } );
-
+                });
             }
 
             app.UseHttpsRedirection();
@@ -88,9 +125,35 @@ namespace Examination.API
             app.UseRouting();
             app.UseCors("CorsPolicy");
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecksUI(options => options.UIPath = "/hc-ui");
+                endpoints.MapHealthChecks("/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
+                endpoints.MapHealthChecks("/hc-details",
+                            new HealthCheckOptions
+                            {
+                                ResponseWriter = async (context, report) =>
+                                {
+                                    var result = JsonSerializer.Serialize(
+                                        new
+                                        {
+                                            status = report.Status.ToString(),
+                                            monitors = report.Entries.Select(e => new { key = e.Key, value = Enum.GetName(typeof(HealthStatus), e.Value.Status) })
+                                        });
+                                    context.Response.ContentType = MediaTypeNames.Application.Json;
+                                    await context.Response.WriteAsync(result);
+                                }
+                            }
+                        );
+
                 endpoints.MapControllers();
             });
         }
