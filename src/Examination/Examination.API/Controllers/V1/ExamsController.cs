@@ -13,6 +13,7 @@ namespace Examination.API.Controllers.V1
     {
         private readonly IMediator _mediator;
         private readonly ILogger<ExamsController> _logger;
+
         public ExamsController(IMediator mediator, ILogger<ExamsController> logger)
         {
             _mediator = mediator;

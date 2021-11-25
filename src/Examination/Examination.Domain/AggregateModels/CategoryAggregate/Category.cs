@@ -5,6 +5,13 @@ namespace Examination.Domain.AggregateModels.CategoryAggregate
 {
     public class Category : Entity
     {
+        public Category(string id, string name, string urlPath)
+        {
+            Id = id;
+            Name = name;
+            UrlPath = urlPath;
+        }
+
         [BsonElement("name")]
         public string Name { get; set; }
 
